@@ -14,6 +14,7 @@ Los pods **no** se pueden ver desde afuera del cluster, o sea que no es posible 
 **kubectl describe service name-of-service** describe el servicio con el nombre que especifiquemos<br/>
 **kubectl delete pod mame-of-pod** borra el pod específicado<br/>
 **kubectl delete pods --all** elimina todos los pods<br/>
+**kubectl delete rs name-of-resultset** elimina el _ResultSet_ que le indiquemos<br/>
 **kubectl describe rs name-of-replica-set** Describe el _ReplicaSet_ que indiquemos <br/>
 
 ### Comandos más avanzados
@@ -165,6 +166,7 @@ Ahora solo falta aplicar los cambios con el comando kubectl apply -f **nombre-de
 
 ###Deployments
 
+Es preferible trabajar con _Deployments_, los cuales son similares a las _ReplicaSet_ pero con una característica adiciional: el tiempo que están abajo los pods cuando se hace algún cambio en el selector del _service_ es cero.<br/>
 
 
 
