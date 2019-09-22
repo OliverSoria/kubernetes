@@ -221,13 +221,13 @@ Nota: cuando un _deployment_ no se puede llevar a cabo por alguna razón se mant
 
 Esta característica permite hacer _rollouts_ entre _releases_ a voluntad, por defecto almacena los últimos 10 _releases_ pudiendo especificar a cual _release_ queremos apuntar, cabe señalar que no es recomendable usar los _Rollouts_ ya que la versión o _release_ desplegada no coincidirá con lo que tenemos en el archivo _yml_, por éste motivo es mejor solo utilizarlo en casos de emergencia. El comando para llevar a cabo esta tarea es:<br/>
 
-*kubectl rollout status deploy deploy_name*<br/>
+**kubectl rollout status deploy deploy_name**<br/>
 
 Ahora, si queremos revertir o deshacer el _rollout_, disponemos de un comando, que es el siguiente:<br/>
 
-*kubectl rollout undo deploy deploy-name*<br/>
+**kubectl rollout undo deploy deploy-name**<br/>
 
 Así mismo tenemos un comando que nos permie consultar el historial de los _rollouts_ que se han llevado a cabo:<br/>
 
-*kubectl rollout history deploy webapp*
+**kubectl rollout history deploy webapp**<br/>
 
