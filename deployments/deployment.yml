@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-deploy
 spec:
-  minReadySeconds: 10
+#  minReadySeconds: 10
   replicas: 5
   template:
     metadata:
@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: whatever
-          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0
   selector:
     matchLabels:
       app: webapp-deployment

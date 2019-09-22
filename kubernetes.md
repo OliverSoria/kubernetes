@@ -171,8 +171,8 @@ Es preferible trabajar con _Deployments_, los cuales son similares a las _Replic
 Para este nuevo tema utilizaremos el _yml_ que hemos utilizado en los _ReplicaSet_, aplicando las respectivas modificaciones, las cuales son:
 
 <ul>
-<li>En _Kind_ debe llevar _Deployment_</li>
-<li>Dentro de _spec_ opcionalemnte se puede agregar _minReadySeconds_ que es para indicar el número de segundos de retraso que tardará en desplegar la nueva versión de la imagen</li>
+<li>En _Kind_ debe llevar _Deployment_.</li>
+<li>Dentro de _spec_ opcionalemnte se puede agregar _minReadySeconds_ que es para indicar el número de segundos de retraso que tardará en desplegar la nueva versión de la imagen.</li>
 </ul>
 
 Con todo lo anterior, obtenemos el siguiente documento:
@@ -213,7 +213,21 @@ spec:
       nodePort: 30085
   type: NodePort
 ```
-Ahora, cuando se cambié del release 0 al release 0.5 el tiempo que estará abajo el servicio será de 10 segundos, si esta etiqueta se omite, el valor por defecto es cero, cabe señalar que el _ReplicaSet_ a pesar que se queda sin _pods_ no es eliminado, ya que en caso que necesitemos hacer un _rollback_ ese mismo _ReplicaSet_ nos va a funcionar, por eso no es eliminado en automático.<br/>
+Ahora, cuando se cambié del release 0 al release 0.5 el tiempo que tardará en hacer el cambio será de 10 segundos, si esta etiqueta se omite, el valor por defecto es cero, cabe señalar que el _ReplicaSet_ a pesar que se queda sin _pods_ no es eliminado, ya que en caso que necesitemos hacer un _rollback_ ese mismo _ReplicaSet_ nos va a funcionar, por eso no es eliminado en automático.<br/>
 
+Nota: cuando un _deployment_ no se puede llevar a cabo por alguna razón se mantiene la última versión funcional corriendo, mientras que Kubernetes entra en un ciclo infinito tratando de llevar a cabo el _deploy_.<br/>
 
+##### Rollouts
+
+Esta característica permite hacer _rollouts_ entre _releases_ a voluntad, por defecto almacena los últimos 10 _releases_ pudiendo especificar a cual _release_ queremos apuntar, cabe señalar que no es recomendable usar los _Rollouts_ ya que la versión o _release_ desplegada no coincidirá con lo que tenemos en el archivo _yml_, por éste motivo es mejor solo utilizarlo en casos de emergencia. El comando para llevar a cabo esta tarea es:<br/>
+
+*kubectl rollout status deploy deploy_name*<br/>
+
+Ahora, si queremos revertir o deshacer el _rollout_, disponemos de un comando, que es el siguiente:<br/>
+
+*kubectl rollout undo deploy deploy-name*<br/>
+
+Así mismo tenemos un comando que nos permie consultar el historial de los _rollouts_ que se han llevado a cabo:<br/>
+
+*kubectl rollout history deploy webapp*
 
