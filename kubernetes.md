@@ -127,7 +127,7 @@ spec:
 
 Ahora solo falta desplegar el respectivo pod y desde luego el servicio.
 
-###ReplicaSets
+### ReplicaSets
 
 <ul>
 <li>Lo primero que vamos a cambiar será el _kind_, que antes era _Pod_, ahora será _ReplicaSet_, ya que no puede ser ambos. </li>
@@ -164,7 +164,7 @@ spec:
 
 Ahora solo falta aplicar los cambios con el comando kubectl apply -f **nombre-del-archivo.yml** y en caso de que queramos ver sus detalles, podemos recurrir al siguiente comando: kubectl describe rs **name-of-replica-set**
 
-###Deployments
+### Deployments
 
 Es preferible trabajar con _Deployments_, los cuales son similares a las _ReplicaSet_ pero con una característica adiciional: el tiempo que están abajo los pods cuando se hace algún cambio en el selector de versión (release) es cero.<br/>
 
