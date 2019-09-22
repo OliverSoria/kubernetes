@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-web-deployment
+
+spec:
+  selector:
+    app: webapp-deployment
+  ports:
+    - port: 80
+      name: http
+      nodePort: 30085
+  type: NodePort

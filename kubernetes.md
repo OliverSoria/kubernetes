@@ -166,9 +166,54 @@ Ahora solo falta aplicar los cambios con el comando kubectl apply -f **nombre-de
 
 ###Deployments
 
-Es preferible trabajar con _Deployments_, los cuales son similares a las _ReplicaSet_ pero con una característica adiciional: el tiempo que están abajo los pods cuando se hace algún cambio en el selector del _service_ es cero.<br/>
+Es preferible trabajar con _Deployments_, los cuales son similares a las _ReplicaSet_ pero con una característica adiciional: el tiempo que están abajo los pods cuando se hace algún cambio en el selector de versión (release) es cero.<br/>
 
+Para este nuevo tema utilizaremos el _yml_ que hemos utilizado en los _ReplicaSet_, aplicando las respectivas modificaciones, las cuales son:
 
+<ul>
+<li>En _Kind_ debe llevar _Deployment_</li>
+<li>Dentro de _spec_ opcionalemnte se puede agregar _minReadySeconds_ que es para indicar el número de segundos de retraso que tardará en desplegar la nueva versión de la imagen</li>
+</ul>
+
+Con todo lo anterior, obtenemos el siguiente documento:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deploy
+spec:
+  minReadySeconds: 10
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: webapp-deployment
+    spec:
+      containers:
+        - name: whatever
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+  selector:
+    matchLabels:
+      app: webapp-deployment
+```
+Y su respectivo servicio:<br/>
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-web-deployment
+
+spec:
+  selector:
+    app: webapp-deployment
+  ports:
+    - port: 80
+      name: http
+      nodePort: 30085
+  type: NodePort
+```
+Ahora, cuando se cambié del release 0 al release 0.5 el tiempo que estará abajo el servicio será de 10 segundos, si esta etiqueta se omite, el valor por defecto es cero, cabe señalar que el _ReplicaSet_ a pesar que se queda sin _pods_ no es eliminado, ya que en caso que necesitemos hacer un _rollback_ ese mismo _ReplicaSet_ nos va a funcionar, por eso no es eliminado en automático.<br/>
 
 
 
