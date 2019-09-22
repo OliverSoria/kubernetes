@@ -125,7 +125,7 @@ spec:
   type: NodePort
 ```
 
-Ahora solo falta desplegar el respectivo pod y desde luego el servicio.<br/>
+Ahora solo falta desplegar el respectivo pod y desde luego el servicio.
 
 ###ReplicaSets
 
@@ -162,7 +162,7 @@ spec:
       app: webapp
 ```
 
-Ahora solo falta aplicar los cambios con el comando kubectl apply -f **nombre-del-archivo.yml** y en caso de que queramos ver sus detalles, podemos recurrir al siguiente comando: kubectl describe rs **name-of-replica-set**<br/>
+Ahora solo falta aplicar los cambios con el comando kubectl apply -f **nombre-del-archivo.yml** y en caso de que queramos ver sus detalles, podemos recurrir al siguiente comando: kubectl describe rs **name-of-replica-set**
 
 ###Deployments
 
