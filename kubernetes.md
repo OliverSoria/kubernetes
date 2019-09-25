@@ -231,3 +231,16 @@ Así mismo tenemos un comando que nos permie consultar el historial de los _roll
 
 **kubectl rollout history deploy webapp**<br/>
 
+### Namespaces
+
+Los _Namespaces_ son espacios (recursos) que están aislados entre sí, dentro de ellos pude haber _deployments_, _services_, _pods_, etc. por defecto se usa el _defult namespace_.<br/>
+
+Algunos comandos a tener en cuenta son:<br/>
+
+<ul>
+<li>**kubectl get ns**</li>
+</ul>
+
+
+ 
+
