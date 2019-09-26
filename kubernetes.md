@@ -129,16 +129,14 @@ Ahora solo falta desplegar el respectivo pod y desde luego el servicio.
 
 ### ReplicaSets
 
-<ul>
-<li>Lo primero que vamos a cambiar será el _kind_, que antes era _Pod_, ahora será _ReplicaSet_, ya que no puede ser ambos. </li>
-<li>El _name_ pasa a ser algo secundario ya que los nombres se generan en automático, así que lo borramos.</li>
-<li>En este ejemplo en particular el _release_ tampoco es necesario.</li>
-<li>Agregamos la sección _spec_, donde se especifica el número de réplicas y el _template_.</li>
-<li>El _template_ tiene la información del pod, que hemos venido usando con anterioridad, es decir _metadata_ y _spec_.</li>
-<li>Es muy importante agregar un _name_ para nuestro _ReplicaSet_, esto lo hacemos agregando la etiqueta _metadata_ y anidamos _name_.</li>
-<li>También en _apiVersion_, aparte de la versión agregamos "_apps/_".</li>
-<li>Dentro de _spec_ tenemos que agregar el _selector_, el cual a su vez anida _matchLabels_ y éste a su vez agrega la etiqueta _app_, necesaria para hacer "match" con el _label_ dentro del _template_.</li>
-</ul>
+⋅⋅* Lo primero que vamos a cambiar será el _kind_, que antes era _Pod_, ahora será _ReplicaSet_, ya que no puede ser ambos.<br/> 
+⋅⋅* El _name_ pasa a ser algo secundario ya que los nombres se generan en automático, así que lo borramos.<br/>
+⋅⋅* En este ejemplo en particular el _release_ tampoco es necesario.<br/>
+⋅⋅* Agregamos la sección _spec_, donde se especifica el número de réplicas y el _template_.<br/>
+⋅⋅* El _template_ tiene la información del pod, que hemos venido usando con anterioridad, es decir _metadata_ y _spec_.<br/>
+⋅⋅* Es muy importante agregar un _name_ para nuestro _ReplicaSet_, esto lo hacemos agregando la etiqueta _metadata_ y anidamos _name_.<br/>
+⋅⋅* También en _apiVersion_, aparte de la versión agregamos "_apps/_".<br/>
+⋅⋅* Dentro de _spec_ tenemos que agregar el _selector_, el cual a su vez anida _matchLabels_ y éste a su vez agrega la etiqueta _app_, necesaria para hacer "match" con el _label_ dentro del _template_.<br/>
 
 Con todos estos cambios obtenemos el siguiente archivo:<br/>
 
@@ -235,10 +233,15 @@ Así mismo tenemos un comando que nos permie consultar el historial de los _roll
 
 Los _Namespaces_ son espacios (recursos) que están aislados entre sí, dentro de ellos pude haber _deployments_, _services_, _pods_, etc. por defecto se usa el _defult namespace_.<br/>
 
-Algunos comandos a tener en cuenta son:<br/>
+Algunos puntos a tener en cuenta son:<br/>
 
 <ul>
-<li>**kubectl get ns**</li>
+<li>**kubectl get ns** muestra los _name results_ que estén corriendo</li>
+<li>Por defecto kubernetes crea dos _name sapces_ que usa para operaciones internas: **kube-public** y **kube-system**</li>
+<li>Si queremos apuntar a un _name sapce_ en particular lo hacemos con el argumento _-n_ por ejemplo: **kubectl get all -n kube-system**</li>
+
+
+
 </ul>
 
 
