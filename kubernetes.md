@@ -15,14 +15,14 @@ Los pods **no** se pueden ver desde afuera del cluster, o sea que no es posible 
 **kubectl delete pod mame-of-pod** borra el pod específicado<br/>
 **kubectl delete pods --all** elimina todos los pods<br/>
 **kubectl delete rs name-of-resultset** elimina el _ResultSet_ que le indiquemos<br/>
-**kubectl describe rs name-of-replica-set** Describe el _ReplicaSet_ que indiquemos <br/>
+**kubectl describe rs name-of-replica-set** Describe el _ReplicaSet_ que indiquemos<br/>
+**kubectl exec -it pod-name sh** Permite ejecutar un _pod_ que no tiene _bash_ de forma interactiva<br/>
 
 ### Comandos más avanzados
 
 **kubectl -it exec webapp sh** comando utiliado para conectarnos con un pod de forma interactiva y poder ejecutar comandos directamente a ese pod<br/>
 **kubectl get po --show-labels** muestra los pods y además agerga las etiquetas<br/>
 **kubectl get po --show-labels -l release=0** muestra los pods, filtrando por la etiqueta especificada y agregando la etiqueta, en el ejemplo se realiza un filtrado por la etiqueta _release=0_<br/>
-
 
 ### Creación de un pod
 
