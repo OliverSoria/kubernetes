@@ -213,7 +213,7 @@ Ahora, cuando se cambié del release 0 al release 0.5 el tiempo que tardará en 
 
 Nota: cuando un _deployment_ no se puede llevar a cabo por alguna razón se mantiene la última versión funcional corriendo, mientras que Kubernetes entra en un ciclo infinito tratando de llevar a cabo el _deploy_.<br/>
 
-##### Rollouts
+#### Rollouts
 
 Esta característica permite hacer _rollouts_ entre _releases_ a voluntad, por defecto almacena los últimos 10 _releases_ pudiendo especificar a cual _release_ queremos apuntar, cabe señalar que no es recomendable usar los _Rollouts_ ya que la versión o _release_ desplegada no coincidirá con lo que tenemos en el archivo _yml_, por éste motivo es mejor solo utilizarlo en casos de emergencia. El comando para llevar a cabo esta tarea es:<br/>
 
