@@ -129,14 +129,14 @@ Ahora solo falta desplegar el respectivo pod y desde luego el servicio.
 
 ### ReplicaSets
 
-⋅⋅* Lo primero que vamos a cambiar será el _kind_, que antes era _Pod_, ahora será _ReplicaSet_, ya que no puede ser ambos.<br/> 
-⋅⋅* El _name_ pasa a ser algo secundario ya que los nombres se generan en automático, así que lo borramos.<br/>
-⋅⋅* En este ejemplo en particular el _release_ tampoco es necesario.<br/>
-⋅⋅* Agregamos la sección _spec_, donde se especifica el número de réplicas y el _template_.<br/>
-⋅⋅* El _template_ tiene la información del pod, que hemos venido usando con anterioridad, es decir _metadata_ y _spec_.<br/>
-⋅⋅* Es muy importante agregar un _name_ para nuestro _ReplicaSet_, esto lo hacemos agregando la etiqueta _metadata_ y anidamos _name_.<br/>
-⋅⋅* También en _apiVersion_, aparte de la versión agregamos "_apps/_".<br/>
-⋅⋅* Dentro de _spec_ tenemos que agregar el _selector_, el cual a su vez anida _matchLabels_ y éste a su vez agrega la etiqueta _app_, necesaria para hacer "match" con el _label_ dentro del _template_.<br/>
+* Lo primero que vamos a cambiar será el _kind_, que antes era _Pod_, ahora será _ReplicaSet_, ya que no puede ser ambos.<br/> 
+* El _name_ pasa a ser algo secundario ya que los nombres se generan en automático, así que lo borramos.<br/>
+* En este ejemplo en particular el _release_ tampoco es necesario.<br/>
+* Agregamos la sección _spec_, donde se especifica el número de réplicas y el _template_.<br/>
+* El _template_ tiene la información del pod, que hemos venido usando con anterioridad, es decir _metadata_ y _spec_.<br/>
+* Es muy importante agregar un _name_ para nuestro _ReplicaSet_, esto lo hacemos agregando la etiqueta _metadata_ y anidamos _name_.<br/>
+* También en _apiVersion_, aparte de la versión agregamos "_apps/_".<br/>
+* Dentro de _spec_ tenemos que agregar el _selector_, el cual a su vez anida _matchLabels_ y éste a su vez agrega la etiqueta _app_, necesaria para hacer "match" con el _label_ dentro del _template_.<br/>
 
 Con todos estos cambios obtenemos el siguiente archivo:<br/>
 
