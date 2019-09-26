@@ -168,10 +168,8 @@ Es preferible trabajar con _Deployments_, los cuales son similares a las _Replic
 
 Para este nuevo tema utilizaremos el _yml_ que hemos utilizado en los _ReplicaSet_, aplicando las respectivas modificaciones, las cuales son:
 
-<ul>
-<li>En _Kind_ debe llevar _Deployment_.</li>
-<li>Dentro de _spec_ opcionalemnte se puede agregar _minReadySeconds_ que es para indicar el número de segundos de retraso que tardará en desplegar la nueva versión de la imagen.</li>
-</ul>
+* En _Kind_ debe llevar _Deployment_.<br/>
+* Dentro de _spec_ opcionalemnte se puede agregar _minReadySeconds_ que es para indicar el número de segundos de retraso que tardará en desplegar la nueva versión de la imagen.<br/>
 
 Con todo lo anterior, obtenemos el siguiente documento:
 
@@ -235,14 +233,9 @@ Los _Namespaces_ son espacios (recursos) que están aislados entre sí, dentro d
 
 Algunos puntos a tener en cuenta son:<br/>
 
-<ul>
-<li>**kubectl get ns** muestra los _name results_ que estén corriendo</li>
-<li>Por defecto kubernetes crea dos _name sapces_ que usa para operaciones internas: **kube-public** y **kube-system**</li>
-<li>Si queremos apuntar a un _name sapce_ en particular lo hacemos con el argumento _-n_ por ejemplo: **kubectl get all -n kube-system**</li>
-
-
-
-</ul>
+* **kubectl get ns** muestra los _name results_ que estén corriendo<br/>
+* Por defecto kubernetes crea dos _name sapces_ que usa para operaciones internas: **kube-public** y **kube-system**<br/>
+* Si queremos apuntar a un _name sapce_ en particular lo hacemos con el argumento _-n_ por ejemplo: **kubectl get all -n kube-system**<br/>
 
 
  
