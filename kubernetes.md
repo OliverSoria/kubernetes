@@ -237,6 +237,49 @@ Algunos puntos a tener en cuenta son:<br/>
 * Por defecto kubernetes crea dos _name sapces_ que usa para operaciones internas: **kube-public** y **kube-system**<br/>
 * Si queremos apuntar a un _name sapce_ en particular lo hacemos con el argumento _-n_ por ejemplo: **kubectl get all -n kube-system**<br/>
 
+### Service Discovery
 
- 
+El _Service Discovery_ es un mecanismo por el cual distintos servicios pueden interactuar entre sí sin conocer _a priori_ las direcciones IP. <br/>
+
+Por ejemplo, supongamos que el servicio A necesita comunicarse con el servicio B, pero éste no conoce la IP del servicio B. Esto se resuelve por medio de un _kube-dns_ (que básicamente es un servidor DNS), de tal manera que el servico A solicita al _kube-dns_ la IP del servicio B, el _kube_dns_ entonces busca cual es la IP que corresponde a un servicio de nombre B y la devuelve como respuesta al servicio A, el servicio A ahora conoce la IP del servicio B y puede establecer comunicación con él.<br/>
+
+Entre las ventajas que podemos destacar de este mecanismo es que si un servicio muere al ser restaurado por _Kubernetes_ su IP cambiará, pero ésto ya no supondrá un problema, ya que la IP se actualiza en el _kube-dns_.
+
+Para ejemplificar éstos conceptos vamos a crear un servicio que implemente _MySql_ y nos conectaremos a él por medio de otro servicio sin conocer la IP. Tenemos entonces el archivo del pod:<br/>
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: mysql
+      image: mysql:5
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: fleetman
+```
+Con su respectivo servicio:<br/>
+
+```yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: database
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+  type: ClusterIP
+```
+
+Por otro lado utilizaremos uno de los _pods_ que hemos venido usando hasta el momento:
+
+
 
