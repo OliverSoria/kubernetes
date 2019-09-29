@@ -245,7 +245,7 @@ Por ejemplo, supongamos que el servicio A necesita comunicarse con el servicio B
 
 Entre las ventajas que podemos destacar de este mecanismo es que si un servicio muere al ser restaurado por _Kubernetes_ su IP cambiará, pero ésto ya no supondrá un problema, ya que la IP se actualiza en el _kube-dns_.
 
-Para ejemplificar éstos conceptos vamos a crear un servicio que implemente _MySql_ y nos conectaremos a él por medio de otro servicio sin conocer la IP. Tenemos entonces el archivo del pod:<br/>
+Para ejemplificar éstos conceptos vamos a crear un servicio que implemente _MySQL_ y nos conectaremos a él por medio de otro servicio sin conocer la IP. Tenemos entonces el archivo del pod:<br/>
 
 ```yaml
 apiVersion: v1
@@ -279,7 +279,37 @@ spec:
   type: ClusterIP
 ```
 
-Por otro lado utilizaremos uno de los _pods_ que hemos venido usando hasta el momento:
+Por otro lado utilizaremos uno de los _pods_ que hemos venido usando hasta el momento o cualquiera que corra sobre la imagen _alpine_:
+
+```shell script
+exec -it pod-name sh
+```
+A continuación y después de haber entrado en el _pod_ procedemos a instalar _MySQL_:<br/>
+
+```shell script
+# apk update
+# apk add mysql-client
+```
+
+Acto seguido procedemos a conectarnos con el servicio de _MySQL_, el cual según la etiqueta _metadata.name_ se denomina _*database*_:<br/>
+
+```shell script
+# mysql -h database -uroot -ppassword fleetman
+```
+
+Donde:<br/>
+* -h indica la url del servidor al que nos deseamos conectar
+* database es el nombre del servicio, del cual desconocemos su IP, pero el _Server Discovery_ se encarcará de resolver
+* -u indica el nombre de usuario que se ha de concatenar al parámetro, en este caso el usuario es _root_
+* -p indica el valor de la contraseña que se ha de adjuntar al parámetro, en este caso la contraseña es _password_
+* Y por último tenemos el nombre de la base de datos, en este caso la base a la que nos conectamos se llama _fleetman_
+
+Si todo salió bien, nos conectaremos al servicio denombre _database_, que a su vez tiene un _pod_ con _MySQL_ y en la base de datos _fleetman_
+
+```shell script
+MySQL [fleetman]> 
+```
+
 
 
 
