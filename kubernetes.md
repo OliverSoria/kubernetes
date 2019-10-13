@@ -17,6 +17,7 @@ Los pods **no** se pueden ver desde afuera del cluster, o sea que no es posible 
 **kubectl delete rs name-of-resultset** elimina el _ResultSet_ que le indiquemos<br/>
 **kubectl describe rs name-of-replica-set** Describe el _ReplicaSet_ que indiquemos<br/>
 **kubectl exec -it pod-name sh** Permite ejecutar un _pod_ que no tiene _bash_ de forma interactiva<br/>
+**kubectl logs name-of-pod** Muestra los logs del por especificado<br/>
 
 ### Comandos más avanzados
 
@@ -309,7 +310,3 @@ Si todo salió bien, nos conectaremos al servicio denombre _database_, que a su 
 ```shell script
 MySQL [fleetman]> 
 ```
-
-
-
-
